@@ -24,3 +24,13 @@ CREATE TABLE `mac_and_cheese`.`users` (
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC) VISIBLE);
+
+CREATE TABLE `mac_and_cheese`.`recipes` (
+  `rec_id` INT NOT NULL AUTO_INCREMENT,
+  `rec_che_id` INT NOT NULL,
+  `rec_pas_id` INT NOT NULL,
+  `rec_user_id` INT NOT NULL,
+  `rec_name` VARCHAR(45) NOT NULL,
+  `rec_desc` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`rec_id`),
+  UNIQUE INDEX `rec_id_UNIQUE` (`rec_id` ASC) VISIBLE);

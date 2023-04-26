@@ -54,9 +54,6 @@ th{
 .center{
     text-align:center;
 }
-body{
-    background-color:var(--hawk3);
-}
 table, td, th, tr {
     padding: 5px 10px 5px 10px;
     border-width:0px;
