@@ -11,7 +11,7 @@ function get_content()
         $content = 'home';
     }
 
-    $content = 'mac' . ucfirst(strtolower($content));
+    $content = ucfirst(strtolower($content));
 
     return $content;
 }
