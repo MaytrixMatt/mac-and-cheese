@@ -39,7 +39,7 @@
         } else {
             var settings = {
                 'async': true,
-                'url': 'createAccount.php?password=' + $('#password').val() + '&name=' + $('#name').val(),
+                'url': 'userSave.php?password=' + $('#password').val() + '&name=' + $('#displayname').val(),
                 'method': 'POST',
                 'headers': {
                     'Cache-Control': 'no-cache'
