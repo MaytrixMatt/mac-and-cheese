@@ -7,9 +7,9 @@ include('library.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="icon" href="mac_logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="icon" href="../mac_logo.png">
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
 
@@ -17,7 +17,7 @@ include('library.php');
 <body>
     <!-- Standard navigation buttons for all pages -->
     <div class = "center">
-            <img src="mac_logo.png" alt="MAC EVERYTHING" width="100px" length="100px"></img>
+            <img src="../mac_logo.png" alt="MAC EVERYTHING" width="100px" length="100px"></img>
             <h2>M.A.C.<h2>
             <span class = "button"><a id = "link"  href="index.php?content=home">Home</a></span>
             <span class = "button"><a id = "link"  href="index.php?content=recipes">Recipes</a></span>

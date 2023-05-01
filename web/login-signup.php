@@ -9,9 +9,9 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label" for="password">Password:</label>
+        <label class="col-sm-3 control-label" for="user_password">Password:</label>
         <div class="col-sm-9">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password" />
         </div>
     </div>
     <div class="form-group">
@@ -32,14 +32,14 @@
     function register() {
         if ($('#displayName').val() == '') {
             showAlert('danger', 'Display Name Required!', 'Your display name can\'t be blank. Enter a value and try again.');
-        } else if ($('#password').val() == '') {
+        } else if ($('#user_password').val() == '') {
             showAlert('danger', 'Password Required!', 'Enter your password and try again!');
-        } else if ($('#password').val() != $('#confirmPassword').val()) {
+        } else if ($('#user_password').val() != $('#confirmPassword').val()) {
             showAlert('danger', 'Password Mismatch!', 'Your passwords don\'t match, try again.');
         } else {
             var settings = {
                 'async': true,
-                'url': 'userSave.php?password=' + $('#password').val() + '&name=' + $('#displayname').val(),
+                'url': 'userSave.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayname').val(),
                 'method': 'POST',
                 'headers': {
                     'Cache-Control': 'no-cache'
