@@ -20,6 +20,7 @@ CREATE TABLE `mac_and_cheese`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(45) NOT NULL,
   `user_password` VARCHAR(45) NOT NULL,
+  `user_email` VARCHAR(100) NOT NULL,
   `user_fav_che_id` INT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
