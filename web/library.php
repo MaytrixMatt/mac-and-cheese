@@ -1,6 +1,18 @@
 <?php
+$dbh = get_database_connection();
+$unauthenticatedContents = array('login-signup');
+$unauthenticatedScripts = array('userSave.php', 'userlogin.php');
+if (!isset($content) || $content == '' || strpos($content, '://') || !file_exists($content . '.php'))
+{
+    $content = 'login-signup';
+}
 
 extract($_REQUEST);
+
+session_start();
+
+verify_authentication();
+
 
 function get_content()
 {
@@ -11,7 +23,7 @@ function get_content()
         $content = 'home';
     }
 
-    $content = ucfirst(strtolower($content));
+    $content = strtolower($content);
 
     return $content;
 }
@@ -29,4 +41,34 @@ function get_database_connection()
     }
 
     return $conn;
+}
+function verify_authentication()
+{
+    global $content, $unauthenticatedContents, $unauthenticatedScripts;
+
+    $scriptName = substr($_SERVER['PHP_SELF'], strlen(get_script_root()));
+
+    if (!(($scriptName == 'index.php' && in_array($content, $unauthenticatedContents)) ||
+          in_array($scriptName, $unauthenticatedScripts)))
+    {
+        if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated'])
+        {
+            session_unset();
+            session_destroy();
+            session_write_close();
+
+            // echo('invaild');
+
+            // echo($scriptName);
+
+            // echo($content);
+            header('Location: index.php');
+            
+            exit();
+        }
+    }
+}
+function get_script_root()
+{
+    return '/web/';
 }

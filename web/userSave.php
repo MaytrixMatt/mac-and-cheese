@@ -1,7 +1,6 @@
 <?php
 
 require_once 'library.php';
-$dbh = get_database_connection();
 $user_password = mysqli_real_escape_string($dbh, $user_password);
 $name = mysqli_real_escape_string($dbh, $name);
 $email = mysqli_real_escape_string($dbh, $email);

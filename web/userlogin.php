@@ -1,7 +1,6 @@
 <?php
 
 require_once 'library.php';
-$dbh = get_database_connection();
 $email = mysqli_real_escape_string($dbh, $email);
 $password = mysqli_real_escape_string($dbh, $password);
 
@@ -22,12 +21,10 @@ if ($count == 1)
 
     session_start();
 
-    $_SESSION['userId'] = $row['id'];
-    $_SESSION['displayName'] = $row['display_name'];
-    $_SESSION['ssoProvider'] = null;
-    $_SESSION['authenticated'] = true;
+    $_SESSION['userId'] = $row['user_id'];
+    $_SESSION['displayName'] = $row['user_name'];
 
-    load_progress(get_default_challenge_year());
+    echo 'This should work - userlogin.php';
 
     session_write_close();
 
@@ -36,4 +33,5 @@ if ($count == 1)
 else
 {
     http_response_code(401);
+    echo 'Fail in userlogin.php';
 }

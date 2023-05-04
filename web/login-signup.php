@@ -1,3 +1,13 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC - Login/Signup</title>
+</head>
+<body>
+</body>
+</html>
 <h3>Enter the information below to create your account.</h3>
 <form class="form-horizontal" action="javascript:void(0);">
     <div class="col-xs-12" style="height:20px;"></div>
@@ -67,7 +77,7 @@ function login() {
     } else {
         var settings = {
             'async': true,
-            'url': 'api/userlogin.php?email=' + $('#loginemail').val() + '&password=' + $('#loginpassword').val(),
+            'url': 'userlogin.php?email=' + $('#loginemail').val() + '&password=' + $('#loginpassword').val(),
             'method': 'POST',
             'headers': {
                 'Cache-Control': 'no-cache'
@@ -77,7 +87,7 @@ function login() {
         $('#loginButton').prop('disabled', true);
 
         $.ajax(settings).done(function(response) {
-            window.location.replace('index.php?content=menu');
+            window.location.replace('index.php?content=home');
         }).fail(function() {
             alert('Check your email address and password and try again.');
         }).always(function() {
