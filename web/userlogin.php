@@ -23,8 +23,9 @@ if ($count == 1)
 
     $_SESSION['userId'] = $row['user_id'];
     $_SESSION['displayName'] = $row['user_name'];
+    $_SESSION['authenticated'] = true;
 
-    echo 'This should work - userlogin.php';
+    //echo 'This should work - userlogin.php';
 
     session_write_close();
 
@@ -33,5 +34,5 @@ if ($count == 1)
 else
 {
     http_response_code(401);
-    echo 'Fail in userlogin.php';
+    //echo 'Fail in userlogin.php';
 }
