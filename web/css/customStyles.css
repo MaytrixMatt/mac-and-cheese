@@ -53,9 +53,6 @@ th{
 }
 .center{
     text-align:center;
-    margin-left:auto;
-    margin-right:auto;
-    width:600px;
 }
 table, td, th, tr {
     padding: 5px 10px 5px 10px;
