@@ -9,7 +9,7 @@
     statistics soon
 
 <br />
-<table class="centerthing">
+<table class="center">
     <thead>
         <tr>
             <th>#</th>
@@ -44,7 +44,7 @@
 </table>    
 
 <br />
-<table class="centerthing">
+<table class="center">
     <thead>
         <tr>
             <th>#</th>
