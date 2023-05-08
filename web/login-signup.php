@@ -6,8 +6,6 @@
     <title>MAC - Login/Signup</title>
 </head>
 <body>
-</body>
-</html>
 <h3>Enter the information below to create your account.</h3>
 <form class="form-horizontal" action="javascript:void(0);">
     <div class="col-xs-12" style="height:20px;"></div>
@@ -132,3 +130,5 @@ function register() {
     }
 }
 </script>
+</body>
+</html>

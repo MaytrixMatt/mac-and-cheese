@@ -6,10 +6,10 @@
     <title>MAC - Stats</title>
 </head>
 <body>
-    statistics soon
+    statistics in progress
 
 <br />
-<table class="center">
+<table class="center-container">
     <thead>
         <tr>
             <th>#</th>
@@ -44,7 +44,7 @@
 </table>    
 
 <br />
-<table class="center">
+<table class="center-container">
     <thead>
         <tr>
             <th>#</th>
@@ -77,6 +77,32 @@
     ?>
     </tbody>
 </table>  
+
+<?php
+$Usql = <<<SQL
+    SELECT user_id
+    FROM users
+SQL;
+
+$Csql = <<<SQL
+    SELECT che_id
+    FROM cheese
+SQL;
+
+$Psql = <<<SQL
+    SELECT pas_id
+    FROM pasta
+SQL;
+
+
+$Ucount = mysqli_num_rows(mysqli_query($dbh, $Usql));
+$Ccount = mysqli_num_rows(mysqli_query($dbh, $Csql));
+$Pcount = mysqli_num_rows(mysqli_query($dbh, $Csql));
+
+echo "<h3>Number of Users: " . $Ucount . "</h3>";
+echo "<h3>Number of Cheeses: " . $Ccount . "</h3>";
+echo "<h3>Number of Pastas: " . $Pcount . "</h3>";
+?>
 
 </body>
 </html>
