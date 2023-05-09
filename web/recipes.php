@@ -6,24 +6,95 @@
     <title>MAC - Recipes</title>
 </head>
 <body>
-<h3>hmm</h3>
+<h3>Create Recipe Form</h3>
 <form class="form-horizontal" action="javascript:void(0);">
     <div class="col-xs-12" style="height:20px;"></div>
     <div class="form-group">
-        <label class="col-sm-3 control-label" for="displayName">Recipe Name:</label>
+        <label class="col-sm-3 control-label" for="recipeName">Recipe Name:</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="displayName" name="displayName" placeholder="Display Name" />
+            <input type="text" class="form-control" id="recipeName" name="recipeName" placeholder="Recipe Name" />
         </div>
     </div>
+    <br />
+    <div class="form-group">
+        <label class="col-sm-3 control-label" id="cheeses" for="Cheeses">Cheese(s)</label>
+        <div class="col-sm-9">
+        <?php
+            $sql = <<<SQL
+            SELECT *
+            FROM cheese
+            SQL;
+            $result = mysqli_query($dbh, $sql);
+
+            while ($row = $result->fetch_assoc())
+            {
+                echo '<input type="checkbox" class="form-control" value=' . $row['che_id'] . ' id="cheese' . $row['che_id'] . '" name="cheese' . $row['che_id'] . '" placeholder="Cheese ' . $row['che_id'] . '" />';
+                echo '<label for="cheese' . $row['che_id'] . '">' . $row['che_name'] . '</label><br />';
+            }
+        ?>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="pasta">Pasta</label>
+        <div class="col-sm-9">
+            <select name="pasta">
+            <?php
+                $sql = <<<SQL
+                SELECT *
+                FROM pasta
+                SQL;
+                $result = mysqli_query($dbh, $sql);
+
+                while ($row = $result->fetch_assoc())
+                {
+                    echo '<option value=' . $row['pas_id'] . '>' . $row['pas_name'] . '</option>';
+                }
+            ?>
+            </select>
+        </div>
+    </div>
+    <br />
     <div class="form-group">
         <label class="col-sm-3 control-label" for="email">Description</label>
         <div class="col-sm-9">
-            <input type="text" style="height:80px;" class="form-control" id="email" name="email" placeholder="Description" />
+            <input type="text" style="height:80px;" class="form-control" id="description" name="description" placeholder="Description" />
         </div>
     </div>
     <div class="container col-md-6 col-md-offset-3">
         <input type="button" id="recipebutton" class="btn btn-primary btn-block" value="Create Recipe" onclick="recipepost()" />
     </div>
 </form>
+<script>
+    function recipepost() {
+    if ($('#recipeName').val() == '') {
+        alert('Recipe Name Required! - Your recipe name can\'t be blank. Enter a value and try again.');
+    } else if ($('#description').val() == '') {
+        alert('Description Required! - Enter your description and try again!');
+    } else if ($('#pasta').val() == '') {
+        alert('Pasta Required! - Choose a pasta type and try again!');
+    } else if ($('#cheeses').val() == '') {
+        alert('Cheese Required! - Choose at least one cheese type and try again!');
+    } else {
+        var settings = {
+            'async': true,
+            'url': 'recipeSave.php?recipeName=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() + '&userid=' + $userid +'&cheeses=' + $('#cheeses').val(),
+            'method': 'POST',
+            'headers': {
+                'Cache-Control': 'no-cache'
+            }
+        };
+
+        $('#recipebutton').prop('disabled', true);
+        $.ajax(settings).done(function(response) {
+            setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
+        }).fail(function(jqXHR) {
+                showAlert('danger', 'Oops, Error!', 'Something went wrong, try again later.');
+        }).always(function() {
+            $('#recipebutton').prop('disabled', false);
+        });
+    }
+}
+</script>
 </body>
 </html>
