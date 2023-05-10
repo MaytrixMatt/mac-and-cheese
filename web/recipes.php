@@ -1,3 +1,6 @@
+<?php
+$cheeseCounter = 0;
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,6 +31,7 @@
 
             while ($row = $result->fetch_assoc())
             {
+                $cheeseCounter = $cheeseCounter + 1;
                 echo '<input type="checkbox" class="form-control" value=' . $row['che_id'] . ' id="cheese' . $row['che_id'] . '" name="cheese' . $row['che_id'] . '" placeholder="Cheese ' . $row['che_id'] . '" />';
                 echo '<label for="cheese' . $row['che_id'] . '">' . $row['che_name'] . '</label><br />';
             }
@@ -38,7 +42,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label" for="pasta">Pasta</label>
         <div class="col-sm-9">
-            <select name="pasta">
+            <select id = "pasta" name="pasta">
             <?php
                 $sql = <<<SQL
                 SELECT *
@@ -66,6 +70,23 @@
     </div>
 </form>
 <script>
+    var cheesesUsed = '';
+
+    function checkCheesesChecked(){
+        var status = false;
+        for(var i = 1; i < <?php echo $cheeseCounter; ?>; i++){
+            if($('#cheese' + i).checked){
+                cheesesUsed = cheesesUsed + (i + ' ')
+                status = true;
+            }
+
+        }
+        alert(cheesesUsed);
+        return status;
+    }
+
+
+
     function recipepost() {
     if ($('#recipeName').val() == '') {
         alert('Recipe Name Required! - Your recipe name can\'t be blank. Enter a value and try again.');
@@ -73,12 +94,12 @@
         alert('Description Required! - Enter your description and try again!');
     } else if ($('#pasta').val() == '') {
         alert('Pasta Required! - Choose a pasta type and try again!');
-    } else if ($('#cheeses').val() == '') {
+    } else if !(checkCheesesChecked()) {
         alert('Cheese Required! - Choose at least one cheese type and try again!');
     } else {
         var settings = {
             'async': true,
-            'url': 'recipeSave.php?recipeName=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() + '&userid=' + $userid +'&cheeses=' + $('#cheeses').val(),
+            'url': 'recipeSave.php?recipeName=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() +'&cheeses=' + cheesesUsed,
             'method': 'POST',
             'headers': {
                 'Cache-Control': 'no-cache'
@@ -89,7 +110,7 @@
         $.ajax(settings).done(function(response) {
             setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
         }).fail(function(jqXHR) {
-                showAlert('danger', 'Oops, Error!', 'Something went wrong, try again later.');
+                alert('Oops, Error! - Something went wrong, try again later.');
         }).always(function() {
             $('#recipebutton').prop('disabled', false);
         });

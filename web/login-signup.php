@@ -120,9 +120,9 @@ function register() {
             setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
         }).fail(function(jqXHR) {
             if (jqXHR.status == 400) {
-                showAlert('danger', 'Email Taken!', 'This email address has been used already. Do you need to reset the password?</a>?');
+                alert('Email Taken! - This email address has been used already. Do you need to reset the password?</a>?');
             } else {
-                showAlert('danger', 'Oops, Error!', 'Something went wrong, try again later.');
+                alert('Oops, Error! - Something went wrong, try again later.');
             }
         }).always(function() {
             $('#registerButton').prop('disabled', false);

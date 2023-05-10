@@ -6,7 +6,7 @@ $description = mysqli_real_escape_string($dbh, $description);
 
 $sql = <<<SQL
 INSERT INTO recipes (rec_name, rec_desc, rec_user_id, rec_che_id, rec_pas_id)
-VALUES ('{$recipeName}', '{$description}', $userid, $cheeses, $pasta)
+VALUES ('{$recipeName}', '{$description}', {$_SESSION['userId']}, $cheeses, $pasta)
 SQL;
 
 if (mysqli_query($dbh, $sql))
