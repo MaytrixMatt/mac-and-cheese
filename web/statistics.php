@@ -94,14 +94,21 @@ $Psql = <<<SQL
     FROM pasta
 SQL;
 
+$Rsql = <<<SQL
+    SELECT rec_id
+    FROM recipes
+SQL;
+
 
 $Ucount = mysqli_num_rows(mysqli_query($dbh, $Usql));
 $Ccount = mysqli_num_rows(mysqli_query($dbh, $Csql));
 $Pcount = mysqli_num_rows(mysqli_query($dbh, $Csql));
+$Rcount = mysqli_num_rows(mysqli_query($dbh, $Rsql));
 
 echo "<h3>Number of Users: " . $Ucount . "</h3>";
 echo "<h3>Number of Cheeses: " . $Ccount . "</h3>";
 echo "<h3>Number of Pastas: " . $Pcount . "</h3>";
+echo "<h3>Number of Recipes: " . $Rcount . "</h3>";
 ?>
 
 </body>

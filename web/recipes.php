@@ -74,9 +74,9 @@ $cheeseCounter = 0;
 
     function checkCheesesChecked(){
         var status = false;
-        for(var i = 1; i < <?php echo $cheeseCounter; ?>; i++){
-            if($('#cheese' + i).checked){
-                cheesesUsed = cheesesUsed + (i + ' ')
+        for(var i = 1; i <= <?php echo $cheeseCounter; ?>; i++){
+            if($('#cheese' + i).prop('checked')){
+                cheesesUsed = cheesesUsed + (i + ',')
                 status = true;
             }
 
@@ -88,34 +88,34 @@ $cheeseCounter = 0;
 
 
     function recipepost() {
-    if ($('#recipeName').val() == '') {
-        alert('Recipe Name Required! - Your recipe name can\'t be blank. Enter a value and try again.');
-    } else if ($('#description').val() == '') {
-        alert('Description Required! - Enter your description and try again!');
-    } else if ($('#pasta').val() == '') {
-        alert('Pasta Required! - Choose a pasta type and try again!');
-    } else if !(checkCheesesChecked()) {
-        alert('Cheese Required! - Choose at least one cheese type and try again!');
-    } else {
-        var settings = {
-            'async': true,
-            'url': 'recipeSave.php?recipeName=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() +'&cheeses=' + cheesesUsed,
-            'method': 'POST',
-            'headers': {
-                'Cache-Control': 'no-cache'
-            }
-        };
+        if ($('#recipeName').val() == '') {
+            alert('Recipe Name Required! - Your recipe name can\'t be blank. Enter a value and try again.');
+        } else if ($('#description').val() == '') {
+            alert('Description Required! - Enter your description and try again!');
+        } else if ($('#pasta').val() == '') {
+            alert('Pasta Required! - Choose a pasta type and try again!');
+        } else if (!checkCheesesChecked()) {
+            alert('Cheese Required! - Choose at least one cheese type and try again!');
+        } else {
+            var settings = {
+                'async': true,
+                'url': 'recipeSave.php?recipeName=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() +'&cheeses=' + cheesesUsed,
+                'method': 'POST',
+                'headers': {
+                    'Cache-Control': 'no-cache'
+                }
+            };
 
-        $('#recipebutton').prop('disabled', true);
-        $.ajax(settings).done(function(response) {
-            setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
-        }).fail(function(jqXHR) {
-                alert('Oops, Error! - Something went wrong, try again later.');
-        }).always(function() {
-            $('#recipebutton').prop('disabled', false);
-        });
+            $('#recipebutton').prop('disabled', true);
+            $.ajax(settings).done(function(response) {
+                setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
+            }).fail(function(jqXHR) {
+                    alert('Oops, Error! - Something went wrong, try again later.');
+            }).always(function(response) {
+                $('#recipebutton').prop('disabled', false);
+            });
+        }
     }
-}
 </script>
 </body>
 </html>
