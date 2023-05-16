@@ -1,5 +1,6 @@
 <?php
 $cheeseCounter = 0;
+$dbh = get_database_connection();
 ?>
 <html lang="en">
 <head>
@@ -76,11 +77,12 @@ $cheeseCounter = 0;
         var status = false;
         for(var i = 1; i <= <?php echo $cheeseCounter; ?>; i++){
             if($('#cheese' + i).prop('checked')){
-                cheesesUsed = cheesesUsed + (i + ',')
+                cheesesUsed = cheesesUsed + (i + ',');
                 status = true;
             }
 
         }
+        cheesesUsed = cheesesUsed.substr(0, (cheesesUsed.length -1));
         alert(cheesesUsed);
         return status;
     }

@@ -1,6 +1,7 @@
 Select * from users;
 Select * from cheese;
 Select * from pasta;
+Select * from recipes;
 
 insert into cheese(che_name, che_country) values ('Romano', 'Italy');
 insert into cheese(che_name, che_country) values ('Cheddar', 'England');

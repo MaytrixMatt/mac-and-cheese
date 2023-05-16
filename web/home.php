@@ -7,7 +7,9 @@
 </head>
 <body>
     Homepage
-    <h1>What does this look like?</h1>
-    <h3>What about this?<h3>
+    <h1>Welcome to MAC! </h1>
+    <h1>(Marty's Awesome Cheeses)</h1>
+    <br />
+    <h3>New Users should consider <a href="index.php?content=login-signup">making an account</a></h3>
 </body>
 </html>

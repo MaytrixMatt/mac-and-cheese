@@ -35,3 +35,10 @@ CREATE TABLE `mac_and_cheese`.`recipes` (
   `rec_desc` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`rec_id`),
   UNIQUE INDEX `rec_id_UNIQUE` (`rec_id` ASC) VISIBLE);
+  
+CREATE TABLE `mac_and_cheese`.`recipe-cheese-join` (
+  `rcj_id` INT NOT NULL AUTO_INCREMENT,
+  `rcj_rec_id` INT NOT NULL,
+  `rcj_che_id` INT NOT NULL,
+  PRIMARY KEY (`rcj_id`),
+  UNIQUE INDEX `rcj_id_UNIQUE` (`rcj_id` ASC) VISIBLE);

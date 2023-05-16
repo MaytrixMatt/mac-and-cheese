@@ -19,7 +19,7 @@
     </thead>
     <tbody>
     <?php
-
+        $dbh = get_database_connection();
         $sql = <<<SQL
         SELECT *
         FROM cheese
@@ -54,7 +54,7 @@
     </thead>
     <tbody>
     <?php
-
+        $dbh = get_database_connection();
         $sql = <<<SQL
         SELECT *
         FROM pasta

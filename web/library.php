@@ -1,5 +1,4 @@
 <?php
-$dbh = get_database_connection();
 $unauthenticatedContents = array('login-signup');
 $unauthenticatedScripts = array('userSave.php', 'userlogin.php');
 if (!isset($content) || $content == '' || strpos($content, '://') || !file_exists($content . '.php'))
