@@ -28,7 +28,6 @@ CREATE TABLE `mac_and_cheese`.`users` (
 
 CREATE TABLE `mac_and_cheese`.`recipes` (
   `rec_id` INT NOT NULL AUTO_INCREMENT,
-  `rec_che_id` INT NOT NULL,
   `rec_pas_id` INT NOT NULL,
   `rec_user_id` INT NOT NULL,
   `rec_name` VARCHAR(45) NOT NULL,
@@ -36,7 +35,7 @@ CREATE TABLE `mac_and_cheese`.`recipes` (
   PRIMARY KEY (`rec_id`),
   UNIQUE INDEX `rec_id_UNIQUE` (`rec_id` ASC) VISIBLE);
   
-CREATE TABLE `mac_and_cheese`.`recipe-cheese-join` (
+CREATE TABLE `mac_and_cheese`.`recipe_cheese_join` (
   `rcj_id` INT NOT NULL AUTO_INCREMENT,
   `rcj_rec_id` INT NOT NULL,
   `rcj_che_id` INT NOT NULL,

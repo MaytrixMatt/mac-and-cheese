@@ -10,6 +10,89 @@ $dbh = get_database_connection();
     <title>MAC - Recipes</title>
 </head>
 <body>
+
+<table class="center-container">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>User</th>
+            <th>Pasta</th>
+            <th>Cheeses</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+
+<?php
+
+$Rsql = <<<SQL
+SELECT *
+FROM recipes
+SQL;
+
+
+$result = mysqli_query($dbh, $Rsql);
+
+while ($row = $result->fetch_assoc())
+        {
+            if($row['rec_id'] % 2 == 0){
+                $tabCol = 'even-table-rows';
+            }else{
+                $tabCol = 'odd-table-rows';
+            }
+
+            $usernombre = <<<SQL
+            SELECT user_name
+            FROM users
+            WHERE user_id = $row['rec_user_id']
+            SQL;
+
+            $pastanombre = <<<SQL
+            SELECT pas_name
+            FROM pasta
+            WHERE pas_id = $row['rec_pas_id']
+            SQL;
+
+            $cheesesInRec = array();
+
+            $RCsql = <<<SQL
+            SELECT *
+            FROM recipe_cheese_join
+            SQL;
+
+            $RCresult = mysqli_query($dbh, $RCsql);
+
+            while ($RCrow = $RCresult->fetch_assoc()){
+                if($RCrow['rcj_rec_id'] == $row['rec_id']){
+                    $cheesenombre = <<<SQL
+                    SELECT che_name
+                    FROM cheese
+                    WHERE che_id = $RCrow['rcj_che_id']
+                    SQL;
+                    array_push($cheesesInRec, $cheesenombre);
+                }
+            }
+
+            echo "<tr class =" . $tabCol .  ">";
+            echo "<td>" . $row['rec_id'] . "</td>";
+            echo "<td>" . $row['rec_name'] . "</td>";
+            echo "<td>" . $usernombre . "</td>";
+            echo "<td>" . $pastanombre . "</td>";
+            echo "<td>" . $cheesesInRec . "</td>";
+            echo "<td>" . $row['rec_desc'] . "</td>";
+            echo "</tr>";
+        }
+
+?>
+
+</tbody>
+</table>  
+
+<br />
+<br />
+<br />
+<br />
 <h3>Create Recipe Form</h3>
 <form class="form-horizontal" action="javascript:void(0);">
     <div class="col-xs-12" style="height:20px;"></div>
@@ -101,7 +184,7 @@ $dbh = get_database_connection();
         } else {
             var settings = {
                 'async': true,
-                'url': 'recipeSave.php?recipeName=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() +'&cheeses=' + cheesesUsed,
+                'url': 'recipeSave.php?recipename=' + $('#recipeName').val() + '&description=' + $('#description').val() + '&pasta=' + $('#pasta').val() +'&cheeses=' + cheesesUsed,
                 'method': 'POST',
                 'headers': {
                     'Cache-Control': 'no-cache'
