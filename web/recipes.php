@@ -41,45 +41,64 @@ while ($row = $result->fetch_assoc())
             }else{
                 $tabCol = 'odd-table-rows';
             }
-
+            
+            $check = $row['rec_user_id'];
             $usernombre = <<<SQL
             SELECT user_name
             FROM users
-            WHERE user_id = $row['rec_user_id']
+            WHERE user_id = $check
             SQL;
+            $usernombre = (mysqli_query($dbh, $usernombre))->fetch_assoc();
+            $usernombre = $usernombre['user_name'];
 
+            $check = $row['rec_pas_id'];
             $pastanombre = <<<SQL
             SELECT pas_name
             FROM pasta
-            WHERE pas_id = $row['rec_pas_id']
+            WHERE pas_id = $check
             SQL;
+            $pastanombre = (mysqli_query($dbh, $pastanombre))->fetch_assoc();
+            $pastanombre = $pastanombre['pas_name'];
 
-            $cheesesInRec = array();
 
-            $RCsql = <<<SQL
-            SELECT *
-            FROM recipe_cheese_join
-            SQL;
-
-            $RCresult = mysqli_query($dbh, $RCsql);
-
-            while ($RCrow = $RCresult->fetch_assoc()){
-                if($RCrow['rcj_rec_id'] == $row['rec_id']){
-                    $cheesenombre = <<<SQL
-                    SELECT che_name
-                    FROM cheese
-                    WHERE che_id = $RCrow['rcj_che_id']
-                    SQL;
-                    array_push($cheesesInRec, $cheesenombre);
-                }
-            }
 
             echo "<tr class =" . $tabCol .  ">";
             echo "<td>" . $row['rec_id'] . "</td>";
             echo "<td>" . $row['rec_name'] . "</td>";
             echo "<td>" . $usernombre . "</td>";
             echo "<td>" . $pastanombre . "</td>";
-            echo "<td>" . $cheesesInRec . "</td>";
+
+
+
+            
+            $RCsql = <<<SQL
+            SELECT *
+            FROM recipe_cheese_join
+            SQL;
+
+            $RCresult = mysqli_query($dbh, $RCsql);
+            echo "hello";
+            while ($RCrow = $RCresult->fetch_assoc()){
+                echo "hola";
+                echo $RCrow['rcj_rec_id'];
+                echo $row['rec_id'];
+                echo(($RCrow['rcj_rec_id'] + 1) == $row['rec_id']);
+                if(($RCrow['rcj_rec_id'] + 1) == $row['rec_id']){
+                    echo "In the If statement";
+                    $check = $RCrow['rcj_che_id'];
+                    $cheesenombre = <<<SQL
+                    SELECT che_name
+                    FROM cheese
+                    WHERE che_id = $check
+                    SQL;
+                    $cheesenombre = (mysqli_query($dbh, $cheesenombre))->fetch_assoc();
+                    $cheesenombre = $cheesenombre['che_name'];
+                    echo "<td>" . $cheesenombre . "</td>";
+                }
+            }
+
+           
+            
             echo "<td>" . $row['rec_desc'] . "</td>";
             echo "</tr>";
         }
