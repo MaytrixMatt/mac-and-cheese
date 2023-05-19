@@ -68,23 +68,16 @@ while ($row = $result->fetch_assoc())
             echo "<td>" . $usernombre . "</td>";
             echo "<td>" . $pastanombre . "</td>";
 
-
-
             
             $RCsql = <<<SQL
             SELECT *
             FROM recipe_cheese_join
             SQL;
 
+            $cheeseList = '';
             $RCresult = mysqli_query($dbh, $RCsql);
-            echo "hello";
             while ($RCrow = $RCresult->fetch_assoc()){
-                echo "hola";
-                echo $RCrow['rcj_rec_id'];
-                echo $row['rec_id'];
-                echo(($RCrow['rcj_rec_id'] + 1) == $row['rec_id']);
                 if(($RCrow['rcj_rec_id'] + 1) == $row['rec_id']){
-                    echo "In the If statement";
                     $check = $RCrow['rcj_che_id'];
                     $cheesenombre = <<<SQL
                     SELECT che_name
@@ -92,13 +85,11 @@ while ($row = $result->fetch_assoc())
                     WHERE che_id = $check
                     SQL;
                     $cheesenombre = (mysqli_query($dbh, $cheesenombre))->fetch_assoc();
-                    $cheesenombre = $cheesenombre['che_name'];
-                    echo "<td>" . $cheesenombre . "</td>";
+                    $cheeseList = $cheeseList . " " . $cheesenombre['che_name'];
+                    
                 }
             }
-
-           
-            
+            echo "<td>" . $cheeseList . "</td>";
             echo "<td>" . $row['rec_desc'] . "</td>";
             echo "</tr>";
         }
