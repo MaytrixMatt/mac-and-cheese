@@ -38,12 +38,6 @@
 <script>
 
 function update() {
-    if ($('#displayName').val() == '') {
-        $('#displayName').val() = false;
-    }
-    if ($('#user_password').val() == '') {
-        $('#user_password').val() = false;
-    } 
     if ($('#user_password').val() != $('#confirmPassword').val()) {
         alert('Password Mismatch! - Your passwords don\'t match, try again.');
     }else if ($('#user_password').val() || $('#displayName').val()){
@@ -61,7 +55,7 @@ function update() {
             //showAlert('success', 'Account Registered!', 'We\'ve sent you an email to verify your address. Continue to the <a href="index.php?content=home">homepage</a> to get started.');
             setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
         }).fail(function(jqXHR) {
-                alert('Oops, Error! - Something went wrong, try again later.');
+            alert('Oops, Error! - Something went wrong, try again later.');
         }).always(function() {
             $('#updateButton').prop('disabled', false);
         });
