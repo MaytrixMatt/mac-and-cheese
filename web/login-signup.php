@@ -117,7 +117,7 @@ function register() {
         $('#registerButton').prop('disabled', true);
         $.ajax(settings).done(function(response) {
             showAlert('success', 'Account Registered!', 'We\'ve sent you an email to verify your address. Continue to the <a href="index.php?content=home">homepage</a> to get started.');
-            setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
+            setTimeout(function() { window.location.replace('index.php?content=home'); }, 500);
         }).fail(function(jqXHR) {
             if (jqXHR.status == 400) {
                 alert('Email Taken! - This email address has been used already. Do you need to reset the password?</a>?');

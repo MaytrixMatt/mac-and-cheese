@@ -43,7 +43,7 @@ function update() {
     }else if ($('#user_password').val() || $('#displayName').val()){
         var settings = {
             'async': true,
-            'url': 'userUpdate.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val(),
+            'url': 'userUpdate.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val() + '&userID=' + <?php echo $_SESSION['userId'] ?>,
             'method': 'POST',
             'headers': {
                 'Cache-Control': 'no-cache'
@@ -53,7 +53,7 @@ function update() {
         $('#updateButton').prop('disabled', true);
         $.ajax(settings).done(function(response) {
             //showAlert('success', 'Account Registered!', 'We\'ve sent you an email to verify your address. Continue to the <a href="index.php?content=home">homepage</a> to get started.');
-            setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
+            setTimeout(function() { window.location.replace('index.php?content=home'); }, 500);
         }).fail(function(jqXHR) {
             alert('Oops, Error! - Something went wrong, try again later.');
         }).always(function() {
