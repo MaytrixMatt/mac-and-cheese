@@ -10,7 +10,7 @@ $dbh = get_database_connection();
     <title>MAC - Recipes</title>
 </head>
 <body>
-<span class = "button"><a id = "link"  href="recipeForm.php">Form</a></span>
+<h3>Create a recipe here >>> <span class = "button"><a id = "link"  href="index.php?content=recipeForm">Form</a></span></h3>
 
 <table class="center-container">
     <thead>

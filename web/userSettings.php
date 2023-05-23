@@ -34,6 +34,7 @@
         <input type="button" id="updateButton" class="btn btn-primary btn-block" value="Update Account" onclick="update()" />
     </div>
 </form>
+* You may have to log-in again for changes to appear *
 
 <script>
 

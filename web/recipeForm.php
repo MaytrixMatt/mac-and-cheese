@@ -10,6 +10,7 @@ $dbh = get_database_connection();
     <title>MAC - Recipes</title>
 </head>
 <body>
+<div class = "center">
 <h3>Create Recipe Form</h3>
 <form class="form-horizontal" action="javascript:void(0);">
     <div class="col-xs-12" style="height:20px;"></div>
@@ -119,5 +120,6 @@ $dbh = get_database_connection();
         }
     }
 </script>
+</div>
 </body>
 </html>
