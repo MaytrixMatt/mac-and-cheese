@@ -98,6 +98,25 @@ while ($row = $result->fetch_assoc())
 ?>
 
 </tbody>
-</table>  
+</table>
+
+
+<svg width="500" height="350">
+
+<symbol id ="recipeBox" width="500" height="350">
+    <rect x="0" y="0" width="500" height="350" style ="fill:white;stroke-width:3;stroke:black;"  />
+    <text x="200" y="20" style="color:red;">*TEMPLATE*</text>
+    <text x="30" y="50" style="font-size:30px;">Name: </text>
+    <text x="30" y="90" style="font-size:30px;">Created By: </text>
+    <text x="30" y="130" style="font-size:30px;">Pasta: </text>
+    <text x="30" y="170" style="font-size:30px;">Cheese(s): </text>
+    <text x="30" y="210" style="font-size:30px;">Description: </text>
+</symbol>
+
+<use id="r1" xlink:href="#recipeBox"  x="0" y="0" />
+
+</svg>
+
+
 </body>
 </html>

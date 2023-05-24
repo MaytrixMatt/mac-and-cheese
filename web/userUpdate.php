@@ -26,5 +26,3 @@ if($user_password != ''){
     echo '<br />';
     print $passwordChange;
 }
-
-

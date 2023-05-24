@@ -1,5 +1,4 @@
 <?php
-
 require_once 'library.php';
 $dbh = get_database_connection();
 $email = mysqli_real_escape_string($dbh, $email);
@@ -15,7 +14,6 @@ $result = mysqli_query($dbh, $sql);
 
 $count = mysqli_num_rows($result);
 
-// figure out this if statement
 if ($count == 1)
 {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -26,8 +24,6 @@ if ($count == 1)
     $_SESSION['displayName'] = $row['user_name'];
     $_SESSION['authenticated'] = true;
 
-    //echo 'This should work - userlogin.php';
-
     session_write_close();
 
     http_response_code(200);
@@ -35,5 +31,4 @@ if ($count == 1)
 else
 {
     http_response_code(401);
-    //echo 'Fail in userlogin.php';
 }

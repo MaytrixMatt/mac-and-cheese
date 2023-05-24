@@ -111,7 +111,7 @@ $dbh = get_database_connection();
 
             $('#recipebutton').prop('disabled', true);
             $.ajax(settings).done(function(response) {
-                setTimeout(function() { window.location.replace('index.php?content=home'); }, 5000);
+                window.location.replace('index.php?content=home');
             }).fail(function(jqXHR) {
                     alert('Oops, Error! - Something went wrong, try again later.');
             }).always(function(response) {

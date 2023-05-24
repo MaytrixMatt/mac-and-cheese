@@ -24,7 +24,7 @@ include('library.php');
             <span class = "button"><a id = "link"  href="index.php?content=recipes">Recipes</a></span>
             <span class = "button"><a id = "link"  href="index.php?content=statistics">Stats</a></span>
             <span class = "button"><a id = "link"  href="index.php?content=login-signup">Login/Sign-up</a></span>
-            <span class = "button"><a id = "link"  href="index.php?content=userSettings"><?php echo $_SESSION['displayName'] ?></a></span>
+            <span class = "button"><a id = "link"  href="index.php?content=userSettings"><?php  if (isset($_SESSION['authenticated'])){ echo $_SESSION['displayName']; }else{ echo 'Settings'; } ?></a></span>
             <span class = "button"><a id = "link"  href="logout.php">Logout</a></span>
             <i class="fa-regular fa-gear"></i>
             <br />
