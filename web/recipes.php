@@ -1,7 +1,3 @@
-<?php
-$cheeseCounter = 0;
-$dbh = get_database_connection();
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,9 +23,13 @@ $dbh = get_database_connection();
 
 <?php
 
+$dbh = get_database_connection();
+
 $Rsql = <<<SQL
 SELECT *
 FROM recipes
+JOIN users ON rec_user_id = user_id
+JOIN pasta ON rec_pas_id = pas_id
 SQL;
 
 
@@ -37,66 +37,39 @@ $result = mysqli_query($dbh, $Rsql);
 
 while ($row = $result->fetch_assoc())
         {
+            $tabCol = 'odd-table-rows';
             if($row['rec_id'] % 2 == 0){
                 $tabCol = 'even-table-rows';
-            }else{
-                $tabCol = 'odd-table-rows';
             }
-            
-            $check = $row['rec_user_id'];
-            $usernombre = <<<SQL
-            SELECT user_name
-            FROM users
-            WHERE user_id = $check
-            SQL;
-            $usernombre = (mysqli_query($dbh, $usernombre))->fetch_assoc();
-            $usernombre = $usernombre['user_name'];
-
-            $check = $row['rec_pas_id'];
-            $pastanombre = <<<SQL
-            SELECT pas_name
-            FROM pasta
-            WHERE pas_id = $check
-            SQL;
-            $pastanombre = (mysqli_query($dbh, $pastanombre))->fetch_assoc();
-            $pastanombre = $pastanombre['pas_name'];
-
-
 
             echo "<tr class =" . $tabCol .  ">";
             echo "<td>" . $row['rec_id'] . "</td>";
             echo "<td>" . $row['rec_name'] . "</td>";
-            echo "<td>" . $usernombre . "</td>";
-            echo "<td>" . $pastanombre . "</td>";
+            echo "<td>" . $row['user_name'] . "</td>";
+            echo "<td>" . $row['pas_name'] . "</td>";
 
-            
+            $rID = $row['rec_id'];
+
             $RCsql = <<<SQL
             SELECT *
             FROM recipe_cheese_join
+            JOIN cheese ON rcj_che_id = che_id
+            WHERE rcj_rec_id = $rID
             SQL;
 
             $cheeseList = '';
             $RCresult = mysqli_query($dbh, $RCsql);
             while ($RCrow = $RCresult->fetch_assoc()){
-                if(($RCrow['rcj_rec_id'] + 1) == $row['rec_id']){
-                    $check = $RCrow['rcj_che_id'];
-                    $cheesenombre = <<<SQL
-                    SELECT che_name
-                    FROM cheese
-                    WHERE che_id = $check
-                    SQL;
-                    $cheesenombre = (mysqli_query($dbh, $cheesenombre))->fetch_assoc();
-                    $cheeseList = $cheeseList . " " . $cheesenombre['che_name'];
-                    
-                }
+                $cheeseList = $cheeseList . " " . $RCrow['che_name'];
             }
+
+
             echo "<td>" . $cheeseList . "</td>";
             echo "<td>" . $row['rec_desc'] . "</td>";
             echo "</tr>";
         }
 
 ?>
-
 </tbody>
 </table>
 
@@ -116,7 +89,5 @@ while ($row = $result->fetch_assoc())
 <use id="r1" xlink:href="#recipeBox"  x="0" y="0" />
 
 </svg>
-
-
 </body>
 </html>

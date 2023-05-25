@@ -18,6 +18,8 @@ print $sql;
 $recId = $dbh->insert_id;
 
 
+
+
 for($i = 0; $i < count($cheeses); $i++){
     $RCJsql = <<<SQL
     INSERT INTO recipe_cheese_join (rcj_rec_id, rcj_che_id)

@@ -116,7 +116,6 @@ function register() {
 
         $('#registerButton').prop('disabled', true);
         $.ajax(settings).done(function(response) {
-            showAlert('success', 'Account Registered!', 'We\'ve sent you an email to verify your address. Continue to the <a href="index.php?content=home">homepage</a> to get started.');
             window.location.replace('index.php?content=home');
         }).fail(function(jqXHR) {
             if (jqXHR.status == 400) {

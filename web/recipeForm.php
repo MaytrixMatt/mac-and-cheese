@@ -84,7 +84,6 @@ $dbh = get_database_connection();
 
         }
         cheesesUsed = cheesesUsed.substr(0, (cheesesUsed.length -1));
-        alert(cheesesUsed);
         return status;
     }
 
@@ -108,7 +107,7 @@ $dbh = get_database_connection();
                     'Cache-Control': 'no-cache'
                 }
             };
-
+            console.log(settings);
             $('#recipebutton').prop('disabled', true);
             $.ajax(settings).done(function(response) {
                 window.location.replace('index.php?content=home');
