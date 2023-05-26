@@ -4,6 +4,7 @@ $dbh = get_database_connection();
 
 $user_password = mysqli_real_escape_string($dbh, $user_password);
 $name = mysqli_real_escape_string($dbh, $name);
+$favCheId = mysqli_real_escape_string($dbh, $favCheId);
 print 'hello';
 
 if($name != ''){
@@ -25,4 +26,14 @@ if($user_password != ''){
     mysqli_query($dbh, $passwordChange);
     echo '<br />';
     print $passwordChange;
+}
+if($favCheId != ''){
+    $cheeseChange = <<<SQL
+    UPDATE users
+       SET user_fav_che_id = '{$favCheId}'
+     WHERE user_id = $userID
+    SQL;
+    mysqli_query($dbh, $cheeseChange);
+    echo '<br />';
+    print $cheeseChange;
 }

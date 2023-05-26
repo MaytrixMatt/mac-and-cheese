@@ -102,7 +102,7 @@ SQL;
 
 $Ucount = mysqli_num_rows(mysqli_query($dbh, $Usql));
 $Ccount = mysqli_num_rows(mysqli_query($dbh, $Csql));
-$Pcount = mysqli_num_rows(mysqli_query($dbh, $Csql));
+$Pcount = mysqli_num_rows(mysqli_query($dbh, $Psql));
 $Rcount = mysqli_num_rows(mysqli_query($dbh, $Rsql));
 
 echo "<h3>Number of Users: " . $Ucount . "</h3>";

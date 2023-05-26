@@ -22,6 +22,7 @@ if ($count == 1)
 
     $_SESSION['userId'] = $row['user_id'];
     $_SESSION['displayName'] = $row['user_name'];
+    $_SESSION['userFavCheId'] = $row['user_fav_che_id'];
     $_SESSION['authenticated'] = true;
 
     session_write_close();

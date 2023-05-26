@@ -13,7 +13,7 @@
 <form class="form-horizontal" action="javascript:void(0);">
     <div class="col-xs-12" style="height:20px;"></div>
     <div class="form-group">
-        <label class="col-sm-3 control-label" for="displayName">Current Name: <?php echo $_SESSION['displayName'] ?></label>
+        <label class="col-sm-3 control-label" for="displayName">Current Name: <?php echo $_SESSION['displayName']; ?></label>
         <div class="col-sm-9">
             <input type="text" class="form-control" id="displayName" name="displayName" placeholder="New Display Name" />
         </div>
@@ -30,6 +30,25 @@
             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="New Password">
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="cheese">Favorite Cheese: <?php echo $_SESSION['userFavCheId']; ?> </label>
+        <div class="col-sm-9">
+            <select id = "cheese" name="cheese">
+            <?php
+                $dbh = get_database_connection();
+                $sql = <<<SQL
+                SELECT *
+                FROM cheese
+                SQL;
+                $result = mysqli_query($dbh, $sql);
+                while ($row = $result->fetch_assoc())
+                {
+                    echo '<option value=' . $row['che_id'] . '>' . $row['che_name'] . '</option>';
+                }
+            ?>
+            </select>
+        </div>
+    </div>
     <div class="container col-md-6 col-md-offset-3">
         <input type="button" id="updateButton" class="btn btn-primary btn-block" value="Update Account" onclick="update()" />
     </div>
@@ -44,7 +63,7 @@ function update() {
     }else if ($('#user_password').val() || $('#displayName').val()){
         var settings = {
             'async': true,
-            'url': 'userUpdate.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val() + '&userID=' + <?php echo $_SESSION['userId'] ?>,
+            'url': 'userUpdate.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val() + '&userID=' + <?php echo $_SESSION['userId'] ?> + '&favCheId=' + $('#cheese').val(),
             'method': 'POST',
             'headers': {
                 'Cache-Control': 'no-cache'
