@@ -74,10 +74,59 @@ while ($row = $result->fetch_assoc())
 </table>
 
 
-<svg width="500" height="350">
+<?php
 
-<symbol id ="recipeBox" width="500" height="350">
-    <rect x="0" y="0" width="500" height="350" style ="fill:white;stroke-width:3;stroke:black;"  />
+$result = mysqli_query($dbh, $Rsql);
+
+while ($row = $result->fetch_assoc())
+        {
+
+            echo "<div class=center-container style='border:4px outset black;width:500;height:300;text-align:left;font-size:24px;'>";
+
+            echo "<tr class =" . $tabCol .  ">";
+            echo "<span style='font-size:12px;'>" . "[" . $row['rec_id'] . "]" . "</span>" . "<br />";
+            echo "&nbsp &nbsp" . "Name: " . $row['rec_name'];
+            echo "<br />" . "<br />";
+            echo "&nbsp &nbsp" . "Created By: " . $row['user_name'];
+            echo "<br />" . "<br />";
+            echo "&nbsp &nbsp" . "Pasta: " . $row['pas_name'];
+            echo "<br />" . "<br />";
+
+            $rID = $row['rec_id'];
+
+            $RCsql = <<<SQL
+            SELECT *
+            FROM recipe_cheese_join
+            JOIN cheese ON rcj_che_id = che_id
+            WHERE rcj_rec_id = $rID
+            SQL;
+
+            $cheeseList = '';
+            $RCresult = mysqli_query($dbh, $RCsql);
+            while ($RCrow = $RCresult->fetch_assoc()){
+                $cheeseList = $cheeseList . " " . $RCrow['che_name'];
+            }
+
+
+            echo "&nbsp &nbsp" . "Cheeese(s): " . $cheeseList;
+            echo "<br />" . "<br />";
+            echo "&nbsp &nbsp" . "Description: " . $row['rec_desc'];
+            echo "</div>";
+            echo "<br />";
+        }
+
+
+?>
+
+<br />
+
+
+
+
+<svg width="500" height="300">
+
+<symbol id ="recipeBox" width="500" height="300">
+    <rect x="0" y="0" width="500" height="300" style ="fill:white;stroke-width:3;stroke:black;"  />
     <text x="200" y="20" style="color:red;">*TEMPLATE*</text>
     <text x="30" y="50" style="font-size:30px;">Name: </text>
     <text x="30" y="90" style="font-size:30px;">Created By: </text>
