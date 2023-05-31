@@ -104,7 +104,7 @@ while ($row = $result->fetch_assoc())
             $cheeseList = '';
             $RCresult = mysqli_query($dbh, $RCsql);
             while ($RCrow = $RCresult->fetch_assoc()){
-                $cheeseList = $cheeseList . " " . $RCrow['che_name'];
+                $cheeseList = $cheeseList . ", " . $RCrow['che_name'];
             }
 
 

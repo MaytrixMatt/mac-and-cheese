@@ -5,6 +5,7 @@
     --lightyellow:#eded24;
     --midyellow:#c2c22f;
     --darkyellow:#8f8f1d;
+    --warnred:#580707;
 }
 a{
     text-decoration:none;
@@ -26,9 +27,20 @@ h3{
     background-color:var(--hawk2);
     border-radius: 15px;
 }
+.button:hover{
+    background-color:var(--hawk1);
+}
 #link{
     font-weight:700;
     color:white;
+}
+.logout{
+    padding:5px 12px 5px 12px;
+    background-color:var(--hawk2);
+    border-radius: 15px;
+}
+.logout:hover{
+    background-color:var(--warnred);
 }
 .date{
     margin-left:10px;

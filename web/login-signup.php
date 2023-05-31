@@ -107,7 +107,7 @@ function register() {
     } else {
         var settings = {
             'async': true,
-            'url': 'userSave.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val() + '&email=' + $('#email').val(),
+            'url': 'userRecord.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val() + '&email=' + $('#email').val() + '&favCheId=-1' + '&update=false',
             'method': 'POST',
             'headers': {
                 'Cache-Control': 'no-cache'

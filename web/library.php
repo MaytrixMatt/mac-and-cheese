@@ -1,6 +1,6 @@
 <?php
 $unauthenticatedContents = array('login-signup');
-$unauthenticatedScripts = array('userSave.php', 'userlogin.php');
+$unauthenticatedScripts = array('userRecord.php', 'userlogin.php');
 if (!isset($content) || $content == '' || strpos($content, '://') || !file_exists($content . '.php'))
 {
     $content = 'login-signup';
