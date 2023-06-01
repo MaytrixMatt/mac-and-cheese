@@ -16,6 +16,7 @@ include('library.php');
 
 </head>
 <body>
+    <?php print_r ($_SESSION); ?>
     <!-- Standard navigation buttons for all pages -->
     <div class = "center">
             <img src="mac_logo.png" alt="MAC EVERYTHING" width="200px" length="200px"></img>

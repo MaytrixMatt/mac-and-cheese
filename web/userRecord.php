@@ -19,6 +19,7 @@ if($update == 'true'){
         SQL;
         mysqli_query($dbh, $nameChange);
         echo '<br />';
+        $_SESSION['displayName'] = $name;
         print $nameChange;
     }
     if($user_password != ''){
@@ -39,6 +40,7 @@ if($update == 'true'){
         SQL;
         mysqli_query($dbh, $cheeseChange);
         echo '<br />';
+        $_SESSION['userFavCheId'] = $favCheId;
         print $cheeseChange;
     }
 }else{

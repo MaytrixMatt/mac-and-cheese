@@ -5,7 +5,7 @@ $email = mysqli_real_escape_string($dbh, $email);
 $password = mysqli_real_escape_string($dbh, $password);
 
 $sql = <<<SQL
-    SELECT user_id, user_name
+    SELECT user_id, user_name, user_fav_che_id
     FROM users
     WHERE user_email = '{$email}' AND user_password = '{$password}'
 SQL;

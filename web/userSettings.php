@@ -6,6 +6,11 @@
     <title>Settings</title>
 </head>
 <body>
+
+    <?php 
+        $dbh = get_database_connection();
+    ?>
+
     User Settings Page
 
 
@@ -31,11 +36,21 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label" for="cheese">Favorite Cheese: <?php echo $_SESSION['userFavCheId']; ?> </label>
+        <label class="col-sm-3 control-label" for="cheese">Favorite Cheese: <?php 
+        
+        $idDeQueso = $_SESSION['userFavCheId'];
+        $csql = <<<SQL
+        SELECT che_name
+        FROM cheese
+        where che_id = $idDeQueso
+        SQL;
+        echo ((mysqli_query($dbh, $csql))->fetch_assoc())['che_name']; 
+        ?> 
+        
+        </label>
         <div class="col-sm-9">
             <select id = "cheese" name="cheese">
             <?php
-                $dbh = get_database_connection();
                 $sql = <<<SQL
                 SELECT *
                 FROM cheese
@@ -60,7 +75,7 @@
 function update() {
     if ($('#user_password').val() != $('#confirmPassword').val()) {
         alert('Password Mismatch! - Your passwords don\'t match, try again.');
-    }else if ($('#user_password').val() || $('#displayName').val()){
+    }else if ($('#user_password').val() || $('#displayName').val() || $('#cheese').val()){
         var settings = {
             'async': true,
             'url': 'userRecord.php?user_password=' + $('#user_password').val() + '&name=' + $('#displayName').val() + '&userID=' + <?php echo $_SESSION['userId'] ?> + '&email=null@null.null' + '&favCheId=' + $('#cheese').val() + '&update=true',
