@@ -49,7 +49,7 @@
         
         </label>
         <div class="col-sm-9">
-            <select id = "cheese" name="cheese">
+            <select id = "cheese" name="cheese" value="<?php $_SESSION['userFavCheId'] ?>">
             <?php
                 $sql = <<<SQL
                 SELECT *

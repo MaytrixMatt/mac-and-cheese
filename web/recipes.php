@@ -87,7 +87,7 @@ while ($row = $result->fetch_assoc())
             echo "<span style='font-size:12px;'>" . "[" . $row['rec_id'] . "]" . "</span>" . "<br />";
             echo "&nbsp &nbsp" . "Name: " . $row['rec_name'];
             echo "<br />" . "<br />";
-            echo "&nbsp &nbsp" . "Created By: " . $row['user_name'];
+            echo "&nbsp &nbsp" . "Created By: " . "<a href='userProfile.php?id=" . $row['user_id'] . "'>" . $row['user_name'] . "</a>";
             echo "<br />" . "<br />";
             echo "&nbsp &nbsp" . "Pasta: " . $row['pas_name'];
             echo "<br />" . "<br />";

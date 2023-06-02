@@ -21,7 +21,7 @@ CREATE TABLE `mac_and_cheese`.`users` (
   `user_name` VARCHAR(45) NOT NULL,
   `user_password` VARCHAR(45) NOT NULL,
   `user_email` VARCHAR(100) NOT NULL,
-  `user_fav_che_id` INT NULL,
+  `user_fav_che_id` INT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC) VISIBLE);
@@ -41,3 +41,15 @@ CREATE TABLE `mac_and_cheese`.`recipe_cheese_join` (
   `rcj_che_id` INT NOT NULL,
   PRIMARY KEY (`rcj_id`),
   UNIQUE INDEX `rcj_id_UNIQUE` (`rcj_id` ASC) VISIBLE);
+  
+  
+insert into cheese(che_name, che_country) values ('Romano', 'Italy');
+insert into cheese(che_name, che_country) values ('Cheddar', 'England');
+insert into cheese(che_name, che_country) values ('Swiss', 'Switzerland');
+insert into cheese(che_name, che_country) values ('Feta', 'Greece');
+insert into cheese(che_name, che_country) values ('Cotija', 'Mexico');
+insert into cheese(che_name, che_country) values ('Asiago', 'Italy');
+
+insert into pasta(pas_name, pas_country) values ('Cavatappi', 'Italy');
+insert into pasta(pas_name, pas_country) values ('Rigatoni', 'Italy');
+insert into pasta(pas_name, pas_country) values ('Farfalle', 'Italy');

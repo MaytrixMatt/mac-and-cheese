@@ -22,8 +22,12 @@ $favCheId = $result['user_fav_che_id'];
     <link rel="stylesheet" type="text/css" href="css/customStyles.css?v=<?php echo rand(); ?>">
 </head>
 <body>
+    <br />
+    <div class=center-container style='border:4px outset black;width:100;height:100;text-align:left;font-size:24px;'>
+    </div>
     <h1><?php echo $name ?></h1>
     <br />
+    <div class=center-container>
     <h3>Favorite Cheese: <?php 
     $idDeQueso = $_SESSION['userFavCheId'];
     $csql = <<<SQL
@@ -34,6 +38,8 @@ $favCheId = $result['user_fav_che_id'];
     echo ((mysqli_query($dbh, $csql))->fetch_assoc())['che_name'];
     ?>
     </h3>
+    </div>
+
 </body>
 </html>
 
