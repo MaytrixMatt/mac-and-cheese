@@ -73,3 +73,9 @@ table, td, th, tr {
 p{
     font-family:times;
 }
+.like-btn{
+    background-color: white;
+}
+.like-btn-selected{
+    background-color: red;
+}
