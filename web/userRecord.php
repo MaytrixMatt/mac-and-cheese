@@ -52,7 +52,7 @@ if($update == 'true'){
     FROM users
     WHERE user_email = '{$email}'
     SQL;
-
+    
     $result = mysqli_query($dbh, $sql);
 
     $count = mysqli_num_rows($result);
@@ -62,6 +62,7 @@ if($update == 'true'){
         INSERT INTO users (user_password, user_name, user_email)
         VALUES ('{$user_password}', '{$name}', '{$email}')
         SQL;
+        print $sql;
 
         if (mysqli_query($dbh, $sql))
         {
