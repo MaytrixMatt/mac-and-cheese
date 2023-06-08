@@ -79,3 +79,9 @@ p{
 .like-btn-selected{
     background-color: red;
 }
+#like-count{
+    font-size:20px;
+    color:var(--midyellow);
+    padding: 80px 60px 0px 0px;
+
+}

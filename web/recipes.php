@@ -137,14 +137,14 @@ while ($row = $result->fetch_assoc())
 
 
 
-
-            echo"<div class='container col-md-6 col-md-offset-3'>";
+            echo "<br />";
+            // echo"<div style='border:2px outset black;width:100;height:40;'>";
             echo "&nbsp &nbsp" . "<input type='submit' id='r" . $row['rec_id'] . "' class='like-btn";
             if($RUcount == 1){
                 echo "-selected";
             } 
-            echo "' value='Like' onclick='like(" . $row['rec_id'] . ")'' /> " . $Likecount;
-            echo "</div>";
+            echo "' value='Like' onclick='like(" . $row['rec_id'] . ")'' /> &nbsp <span id=like-count> " . $Likecount . "</span>";
+            //echo "</div>";
 
 
             echo "</div>";
@@ -163,18 +163,7 @@ function like(recID){
 
     var settings = {
             'async': true,
-            'url': 'rec-user.php?recID=' + recID + '&userID=' + <?php echo $_SESSION['userId']; ?> + '&selected=' + <?php 
-            
-            $userID = $_SESSION['userId'];
-            $RUsql = <<<SQL
-            SELECT *
-            FROM recipe_user_join
-            WHERE ruj_rec_id = $rID AND ruj_user_id = $userID
-            SQL;
-            
-            echo mysqli_num_rows(mysqli_query($dbh, $RUsql)); 
-
-            ?>,
+            'url': 'rec-user.php?recID=' + recID + '&userID=' + <?php echo $_SESSION['userId']; ?>,
             'method': 'POST',
             'headers': {
                 'Cache-Control': 'no-cache'

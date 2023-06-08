@@ -99,16 +99,24 @@ $Rsql = <<<SQL
     FROM recipes
 SQL;
 
+$Lsql = <<<SQL
+    SELECT ruj_id
+    FROM recipe_user_join
+SQL;
+
 
 $Ucount = mysqli_num_rows(mysqli_query($dbh, $Usql));
 $Ccount = mysqli_num_rows(mysqli_query($dbh, $Csql));
 $Pcount = mysqli_num_rows(mysqli_query($dbh, $Psql));
 $Rcount = mysqli_num_rows(mysqli_query($dbh, $Rsql));
+$Lcount = mysqli_num_rows(mysqli_query($dbh, $Lsql));
 
 echo "<h3>Number of Users: " . $Ucount . "</h3>";
 echo "<h3>Number of Cheeses: " . $Ccount . "</h3>";
 echo "<h3>Number of Pastas: " . $Pcount . "</h3>";
 echo "<h3>Number of Recipes: " . $Rcount . "</h3>";
+echo "<h3>Total Number of Likes: " . $Lcount . "</h3>";
+
 ?>
 
 </body>
