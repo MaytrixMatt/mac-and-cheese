@@ -1,5 +1,4 @@
 <?php
-
 require_once 'library.php';
 $dbh = get_database_connection();
 $recipename = mysqli_real_escape_string($dbh, $recipename);
@@ -13,12 +12,7 @@ SQL;
 
 mysqli_query($dbh, $sql);
 print $sql;
-
-
 $recId = $dbh->insert_id;
-
-
-
 
 for($i = 0; $i < count($cheeses); $i++){
     $RCJsql = <<<SQL

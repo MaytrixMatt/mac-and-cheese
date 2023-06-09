@@ -186,7 +186,7 @@ function like(recID){
 
 
 
-<svg width="500" height="300">
+<!-- <svg width="500" height="300">
 
 <symbol id ="recipeBox" width="500" height="300">
     <rect x="0" y="0" width="500" height="300" style ="fill:white;stroke-width:3;stroke:black;"  />
@@ -200,6 +200,6 @@ function like(recID){
 
 <use id="r1" xlink:href="#recipeBox"  x="0" y="0" />
 
-</svg>
+</svg> -->
 </body>
 </html>

@@ -29,13 +29,18 @@ $favCheId = $result['user_fav_che_id'];
     <br />
     <div class=center-container>
     <h3>Favorite Cheese: <?php 
-    $idDeQueso = $_SESSION['userFavCheId'];
     $csql = <<<SQL
     SELECT che_name
     FROM cheese
-    where che_id = $idDeQueso
+    where che_id = $favCheId
     SQL;
     echo ((mysqli_query($dbh, $csql))->fetch_assoc())['che_name'];
+    // $Lsql = <<<SQL
+    // SELECT ruj_id
+    // FROM recipe_user_join
+    // WHERE ruj_rec_id = $
+    // SQL;
+    // echo mysqli_num_rows(mysqli_query($dbh, $Lsql));
     ?>
     </h3>
     </div>
