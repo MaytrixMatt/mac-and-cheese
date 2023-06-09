@@ -41,6 +41,13 @@ CREATE TABLE `mac_and_cheese`.`recipe_cheese_join` (
   `rcj_che_id` INT NOT NULL,
   PRIMARY KEY (`rcj_id`),
   UNIQUE INDEX `rcj_id_UNIQUE` (`rcj_id` ASC) VISIBLE);
+
+CREATE TABLE `mac_and_cheese`.`recipe_user_join` (
+  `ruj_id` INT NOT NULL AUTO_INCREMENT,
+  `ruj_rec_id` INT NOT NULL,
+  `ruj_user_id` INT NOT NULL,
+  PRIMARY KEY (`ruj_id`),
+  UNIQUE INDEX `ruj_id_UNIQUE` (`ruj_id` ASC) VISIBLE);
   
   
 insert into cheese(che_name, che_country) values ('Romano', 'Italy');
